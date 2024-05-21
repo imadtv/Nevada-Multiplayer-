@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة مشابهة لـ RAGE Multiplayer</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000;
+            padding: 1rem;
+            position: relative;
+            z-index: 10;
+        }
+        .logo {
+            font-size: 1.5rem;
+            color: #FFD700; /* لون ذهبي */
+        }
+        .menu-icon {
+            display: block;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        .hero {
+            position: relative;
+            text-align: center;
+            color: white;
+            overflow: hidden; /* لضمان أن الحواف المنحنية ستظهر بشكل صحيح */
+        }
+        .hero img {
+            width: 100%;
+            height: auto;
+            border-top-left-radius: 20px; /* إضافة الحواف المنحنية */
+            border-top-right-radius: 20px; /* إضافة الحواف المنحنية */
+        }
+        .hero-text {
+            position: absolute;
+            top: 60%;
+            left: 10%;
+            transform: translate(-10%, -40%);
+            text-align: left;
+        }
+        .hero-text h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px #000000;
+            background: linear-gradient(to right, #FFD700, #FF8C00);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .hero-text p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px #000000;
+        }
+        .button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 2px solid #FFD700; /* لون ذهبي */
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .button:hover {
+            background-color: #FFD700;
+            color: #000;
+        }
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 20;
+            top: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #f1f1f1;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidenav a:hover {
+            color: #FFD700;
+        }
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+        /* الأقسام الجديدة */
+        .section {
+            padding: 2rem;
+            text-align: center;
+        }
+        .section img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+        .section p {
+            font-size: 1rem;
+            color: #f1f1f1;
+        }
+        .available-from {
+            background-color: #111;
+            padding: 2rem;
+            text-align: center;
+        }
+        .available-from h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+        .available-from .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .available-from .button-group a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 2px solid #FFD700; /* لون ذهبي */
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .available-from .button-group a:hover {
+            background-color: #FFD700;
+            color: #000;
+        }
+        .developer-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            background-color: #002d1a; /* لون أخضر داكن */
+            border-radius: 10px;
+            margin: 2rem;
+        }
+        .developer-section img {
+            width: 40%;
+            border-radius: 10px;
+        }
+        .developer-section .developer-text {
+            width: 55%;
+            color: #fff;
+            text-align: left;
+        }
+        .developer-section .developer-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .developer-section .developer-text p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .developer-section .developer-text .button {
+            padding: 0.5rem 1rem;
+            border: 2px solid #FFD700; /* لون ذهبي */
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .developer-section .developer-text .button:hover {
+            background-color: #FFD700;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">R</div>
+        <div class="menu-icon" onclick="openNav()">☰</div>
+    </header>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+        <a href="#">ملخص</a>
+        <a href="#">خوادم على الانترنت</a>
+        <a href="#">مجتمع</a>
+        <a href="#">موارد</a>
+        <a href="#">ويكي</a>
+    </div>
+    <div class="hero">
+        <img src="https://www.filmsjackets.com/image/catalog/grand-theft-auto-claude-bomber-leather-jacket/grand-theft-auto-claude-jacket.jpg" alt="Background Image">
+        <div class="hero-text">
+            <h1>الشوارع أكبر مع الأصدقاء!</h1>
+            <p>تفاعل مع زملائك، أو أنشئ خادمًا مخصصًا، أو عزز مجتمعًا نابضًا بالحياة، أو قم بالريادة في وضع لعب جديد. مع RAGE Multiplayer، احتضن إمكانيات لا حدود لها وتحكَّم لا مثيل له. دع خيالك يكون الأفق الوحيد.</p>
+            <a href="#" class="button">متعددة اللاعبين RAGE تحميل لعبة</a>
+        </div>
+    </div>
+    <!-- قسم "متاح من" -->
+    <section class="available-from">
+        <h2>متاح من</h2>
+        <div class="button-group">
+            <a href="#">Rockstar</a>
+            <a href="#">Steam</a>
+            <a href="#">Epic Games</a>
+        </div>
+    </section>
+    <!-- قسم "شراء جراند ثيفت أوتو" -->
+    <section class="section">
+        <img src="path_to_gta_image.jpg" alt="GTA Image">
+        <h2>الخطوة 1 شراء جراند ثيفت أوتو</h2>
+        <a href="#" class="button">اشتري الآن</a>
+    </section>
+    <!-- قسم "توحد مع الآلاف من اللاعبين" -->
+    <section class="section">
+        <img src="https://i.ytimg.com/vi/RKVDaDpvRXg/maxresdefault.jpg" alt="Race Image">
+        <h2>توحد مع الآلاف من اللاعبين في عالم ملحمي واحد</h2>
+        <p>تم تصميم منصتنا لتحقيق التميز، حيث تم تصميمها بمهارة لاستيعاب الآلاف من اللاعبين والأداء بسلاسة، مما يضمن تجربة مثالية ومتواصلة. انغمس في عالم تلتقي فيه الأعداد الهائلة بسلاسة اللعب التي لا مثيل لها. طموحاتك الواسعة في الألعاب أصبحت الآن حقيقة واقعة.</p>
+    </section>
+   <!-- قسم "هل أنت مطور تبحث عن فرص متقدمة؟" -->
+    <section class="developer-opportunities-section" style="text-align: center; padding: 2rem; background-color: #111; color: white;">
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <div style="flex: 1; padding: 1rem;">
+                <img src="https://fnh.ma/uploads/actualites/656f3e1e41ab8_gta%206%20maroc.jpg" alt="Stiven Samp" style="width: 100%; border-radius: 10px;">
+            </div>
+            <div style="flex: 1; padding: 1rem; text-align: left;">
+                <h2 style="color: #FFD700;">هل أنت مطور تبحث عن فرص متقدمة؟</h2>
+                <p>استخدم واجهة برمجة التطبيقات القوية لدينا لإنشاء نصوص متقدمة، استضافة الخادم المخصص الخاص بك، وزيادة إمكانياتك الإبداعية. تجربة بساطة غير مسبوقة في إنشاء وضع اللعب.</p>
+                <a href="#" class="button" style="background-color: #FFD700; color: #000; padding: 0.5rem 1rem; border-radius: 5px; text-decoration: none; transition: background-color 0.3s, color 0.3s;">عرض الويكي للبدء</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+</body>
+</html>
